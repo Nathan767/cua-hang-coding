@@ -1,1 +1,1544 @@
-# cua-hang-coding
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NA THAN AI | AI Coding Store</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #202e40;
+      --muted: #788596;
+      --navy: #263c50;
+      --accent: #5c55ee;
+      --bg: #f6f8fb;
+      --line: #e5e9ef;
+      --white: #fff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Be Vietnam Pro', sans-serif;
+      font-size: 14px;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { text-decoration: none; color: inherit; }
+
+    .wrap {
+      max-width: 1180px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .top {
+      background: #142331;
+      color: #dbe5ff;
+      text-align: center;
+      padding: 9px;
+      font-size: 12px;
+    }
+
+    .head {
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .head-inner {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      justify-content: space-between;
+      min-height: 78px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 22px;
+      white-space: nowrap;
+      color: var(--navy);
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav {
+      display: flex;
+      gap: 23px;
+      align-items: center;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 11px;
+      padding: 12px 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .btn.primary {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    .btn.primary:hover { background: #37566f; }
+
+    .btn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
+    .small {
+      padding: 9px 11px;
+      font-size: 12px;
+    }
+
+    .hero {
+      margin: 25px 0 28px;
+      background: linear-gradient(
+        115deg,
+        #101c33,
+        #223a68 60%,
+        #5d50cc
+      );
+      border-radius: 25px;
+      color: white;
+      padding: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      gap: 20px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #a7d3ff;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(29px, 4.8vw, 50px);
+      margin: 12px 0;
+      line-height: 1.23;
+    }
+
+    .hero p {
+      color: #d9e1fd;
+      line-height: 1.8;
+      max-width: 590px;
+    }
+
+    .hero .btn {
+      margin-top: 9px;
+      color: #182b41;
+    }
+
+    .hero-art {
+      font-size: clamp(65px, 10vw, 145px);
+      white-space: nowrap;
+    }
+
+    .trust {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 13px;
+      margin-bottom: 30px;
+    }
+
+    .trust > div {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 17px;
+      border-radius: 13px;
+      font-size: 13px;
+    }
+
+    h2 {
+      font-size: 23px;
+      margin: 0 0 7px;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 20px;
+      line-height: 1.7;
+    }
+
+    .toolbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .field {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 11px;
+      padding: 12px 14px;
+      min-width: 180px;
+      outline-color: #8b87f1;
+    }
+
+    .search {
+      flex: 1;
+      min-width: 210px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .product {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      box-shadow: 0 4px 14px #11223308;
+    }
+
+    .illustration {
+      height: 126px;
+      border-radius: 15px;
+      background: linear-gradient(
+        135deg,
+        #f3f5ff,
+        #e8f2ff
+      );
+      font-size: 55px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 16px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #635ce7;
+    }
+
+    .product h3 {
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 8px 0;
+    }
+
+    .product p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 12px;
+      flex: 1;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .price {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .checkout { margin: 32px 0 65px; }
+
+    .steps {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 19px 23px;
+      margin-bottom: 23px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 18px;
+      color: var(--muted);
+    }
+
+    .step-number {
+      width: 31px;
+      height: 31px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #e0e4e9;
+      border-radius: 50%;
+      font-weight: 700;
+    }
+
+    .step-number.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+
+    .step-line {
+      height: 1px;
+      background: var(--line);
+      flex: 1;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.75fr) minmax(315px, 1fr);
+      gap: 21px;
+      align-items: start;
+    }
+
+    .stack {
+      display: grid;
+      gap: 19px;
+    }
+
+    .card h3 {
+      font-size: 19px;
+      margin: 0 0 22px;
+    }
+
+    .cart-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      margin-bottom: 10px;
+    }
+
+    .mini-icon {
+      background: #eff0ff;
+      border-radius: 12px;
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .cart-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-info strong {
+      display: block;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .qty {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 10px;
+    }
+
+    .qty button {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 6px;
+      width: 27px;
+      height: 27px;
+    }
+
+    .remove {
+      border: none;
+      background: transparent;
+      color: #cf4747;
+      font-size: 12px;
+    }
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 17px 0;
+      color: #737f91;
+    }
+
+    .line strong { color: var(--ink); }
+
+    .line.total {
+      border-top: 1px solid var(--line);
+      padding-top: 19px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .line.total strong { font-size: 22px; }
+
+    .full {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .notice {
+      background: #f7f9fc;
+      border: 1px solid var(--line);
+      padding: 14px;
+      border-radius: 11px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+    }
+
+    .formlabel {
+      display: block;
+      margin: 17px 0 6px;
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    .formfield {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .qr {
+      display: block;
+      width: min(100%, 360px);
+      margin: 12px auto;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+    }
+
+    .center { text-align: center; }
+    .hidden { display: none !important; }
+
+    .status {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 9px;
+      line-height: 1.7;
+    }
+
+    .success { color: #167647; }
+    .error { color: #b32d2d; }
+
+    footer {
+      background: #142331;
+      color: #d1daeb;
+      padding: 38px 0;
+      margin-top: 35px;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 900px) {
+      nav { display: none; }
+
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 570px) {
+      .head-inner {
+        gap: 8px;
+        min-height: 68px;
+      }
+
+      .logo { font-size: 17px; }
+
+      .actions { gap: 5px; }
+
+      .actions .btn {
+        padding: 9px 8px;
+        font-size: 11px;
+      }
+
+      .wrap { padding: 0 12px; }
+
+      .hero { padding: 29px 22px; }
+      .hero-art { display: none; }
+      .hero h1 { font-size: 29px; }
+
+      .trust {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .product-grid { gap: 10px; }
+      .product { padding: 12px; }
+
+      .illustration {
+        height: 100px;
+        font-size: 40px;
+      }
+
+      .product h3 { font-size: 12px; }
+      .product p { font-size: 11px; }
+      .price { font-size: 14px; }
+
+      .product-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .card { padding: 17px; }
+      .two { grid-template-columns: 1fr; }
+      .cart-row { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="top">
+  ⚡ NA THAN AI — Công cụ AI hỗ trợ lập trình và học tập
+</div>
+
+<header class="head">
+  <div class="wrap head-inner">
+    <a href="#home" class="logo">
+      NATHAN<span>AI.</span>
+    </a>
+
+    <nav>
+      <a href="#home">Trang chủ</a>
+      <a href="#products">Sản phẩm</a>
+      <a href="#checkout">Thanh toán</a>
+    </nav>
+
+    <div class="actions">
+      <button class="btn small" id="loginBtn">
+        Đăng nhập Google
+      </button>
+
+      <button class="btn small hidden" id="logoutBtn">
+        Đăng xuất
+      </button>
+
+      <button class="btn primary small" id="cartBtn">
+        🛒 <span id="cartCount">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">AI CODING STORE</div>
+
+      <h1>
+        Nâng cấp khả năng<br>
+        lập trình với AI
+      </h1>
+
+      <p>
+        Khám phá các sản phẩm và gói công cụ AI
+        hỗ trợ viết mã, học tập và phát triển phần mềm.
+      </p>
+
+      <a class="btn" href="#products">
+        Khám phá sản phẩm →
+      </a>
+    </div>
+
+    <div class="hero-art">💻✨</div>
+  </section>
+
+  <div class="trust">
+    <div>🔐 <b>Đăng nhập Google</b> qua Firebase</div>
+    <div>⚡ <b>VietQR</b> theo đúng tổng tiền đơn hàng</div>
+    <div>💬 <b>Hỗ trợ</b> kiểm tra đơn trước khi bàn giao</div>
+  </div>
+
+  <section id="products">
+    <h2>Sản phẩm AI Coding</h2>
+
+    <p class="sub">
+      Chọn gói phù hợp. Giá và mô tả dưới đây là dữ liệu
+      mẫu, bạn hãy chỉnh theo dịch vụ được phép cung cấp.
+    </p>
+
+    <div class="toolbar">
+      <input
+        id="search"
+        class="field search"
+        type="search"
+        placeholder="🔎 Tìm sản phẩm AI..."
+      >
+
+      <select id="category" class="field">
+        <option value="all">Tất cả danh mục</option>
+        <option value="coding">AI Coding</option>
+        <option value="combo">Combo</option>
+      </select>
+    </div>
+
+    <div id="productsGrid" class="product-grid"></div>
+  </section>
+
+  <section class="checkout" id="checkout">
+
+    <div class="steps">
+      <span id="step1" class="step-number active">1</span>
+      Thanh toán
+
+      <div class="step-line"></div>
+
+      <span id="step2" class="step-number">2</span>
+      Chuyển khoản MB
+    </div>
+
+    <!-- BƯỚC 1: TẠO ĐƠN HÀNG -->
+
+    <div id="checkoutStep1" class="checkout-grid">
+
+      <div class="stack">
+
+        <div class="card">
+          <h3>Sản phẩm</h3>
+          <div id="cartItems"></div>
+        </div>
+
+        <div class="card">
+          <h3>Mã giảm giá</h3>
+
+          <input
+            id="promo"
+            class="field formfield"
+            placeholder="Nhập mã giảm giá (không bắt buộc)"
+          >
+
+          <p class="status">
+            Mã thử nghiệm: AI10 — giảm 10%.
+            Hãy xóa mã này trước khi bán thật nếu không sử dụng.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Thông tin người mua</h3>
+
+          <div class="notice" id="authHint">
+            Bạn có thể xem sản phẩm không cần đăng nhập.
+            Để tiếp tục thanh toán, hãy đăng nhập Google.
+          </div>
+
+          <div class="two">
+            <div>
+              <label class="formlabel" for="buyerName">
+                Họ tên
+              </label>
+
+              <input
+                class="field formfield"
+                id="buyerName"
+                placeholder="Họ tên của bạn"
+              >
+            </div>
+
+            <div>
+              <label class="formlabel" for="buyerEmail">
+                Email nhận sản phẩm
+              </label>
+
+              <input
+                class="field formfield"
+                id="buyerEmail"
+                type="email"
+                placeholder="email@gmail.com"
+              >
+            </div>
+          </div>
+
+          <label class="formlabel" for="buyerPhone">
+            Số điện thoại / Zalo
+          </label>
+
+          <input
+            class="field formfield"
+            id="buyerPhone"
+            placeholder="Nhập số điện thoại"
+          >
+
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3>Tạo đơn hàng</h3>
+
+        <div class="notice">
+          Tổng tiền được tính tự động theo sản phẩm
+          và mã giảm giá.
+        </div>
+
+        <div class="line">
+          <span>Số lượng</span>
+          <strong id="orderCount">0</strong>
+        </div>
+
+        <div class="line">
+          <span>Giá gốc</span>
+          <strong id="subtotal">0đ</strong>
+        </div>
+
+        <div class="line">
+          <span>Mã giảm giá</span>
+          <strong id="discount">0đ</strong>
+        </div>
+
+        <div class="line total">
+          <span>Cần thanh toán</span>
+          <strong id="grandTotal">0đ</strong>
+        </div>
+
+        <p class="muted">Phương thức thanh toán</p>
+
+        <div class="notice">
+          <b>🏦 MB BANK — VietQR</b><br>
+          Chuyển khoản ngân hàng
+        </div>
+
+        <button id="checkoutBtn" class="btn primary full">
+          Đặt hàng và thanh toán
+        </button>
+
+        <p id="checkoutMessage" class="status"></p>
+      </aside>
+
+    </div>
+
+    <!-- BƯỚC 2: THANH TOÁN VIETQR -->
+
+    <div id="checkoutStep2" class="checkout-grid hidden">
+
+      <div class="card">
+        <h3>Quét QR để thanh toán</h3>
+
+        <p class="sub">
+          Sử dụng ứng dụng ngân hàng hỗ trợ VietQR.
+          Hãy kiểm tra thông tin trước khi xác nhận chuyển khoản.
+        </p>
+
+        <img
+          id="qrImg"
+          class="qr"
+          alt="Mã VietQR động của đơn hàng"
+        >
+
+        <p id="qrStatus" class="status center"></p>
+
+        <div class="notice">
+          <b>Lưu ý:</b> Hiển thị QR không có nghĩa là tiền
+          đã vào tài khoản. Người bán phải kiểm tra giao dịch
+          trước khi giao sản phẩm.
+        </div>
+      </div>
+
+      <aside class="card">
+        <h3>Thông tin chuyển khoản</h3>
+
+        <div class="line">
+          <span>Ngân hàng</span>
+          <strong>MB Bank</strong>
+        </div>
+
+        <div class="line">
+          <span>Người nhận</span>
+          <strong>MA GIO NA THAN</strong>
+        </div>
+
+        <div class="line">
+          <span>Số tài khoản</span>
+          <strong>0345712135</strong>
+        </div>
+
+        <div class="line">
+          <span>Mã đơn</span>
+          <strong id="orderId">—</strong>
+        </div>
+
+        <div class="line total">
+          <span>Số tiền</span>
+          <strong id="payAmount">0đ</strong>
+        </div>
+
+        <div class="notice">
+          Nội dung chuyển khoản:
+          <b id="payMemo">—</b>
+        </div>
+
+        <button class="btn full" id="copyPaymentBtn">
+          📋 Sao chép thông tin chuyển khoản
+        </button>
+
+        <button class="btn primary full" id="copyOrderBtn">
+          📄 Sao chép đơn gửi người bán
+        </button>
+
+        <button class="btn full" id="backBtn">
+          ← Quay lại giỏ hàng
+        </button>
+
+        <p class="status">
+          Trạng thái: <b>Chờ đối chiếu chuyển khoản</b>.
+          Website chưa có hệ thống tự xác nhận tiền đã nhận.
+        </p>
+
+      </aside>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>NA THAN AI Coding Store</b><br>
+    Website bán sản phẩm số<br>
+    GitHub Pages + Firebase Google Login + VietQR<br>
+    Chỉ phân phối sản phẩm số khi bạn có quyền cung cấp hợp lệ.
+  </div>
+</footer>
+
+<script type="module">
+
+// ==============================================
+// 1. IMPORT FIREBASE
+// ==============================================
+
+import {
+  initializeApp
+} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+
+
+// ==============================================
+// 2. CẤU HÌNH FIREBASE
+// THAY BẰNG CẤU HÌNH FIREBASE CỦA BẠN
+// ==============================================
+
+const firebaseConfig = {
+  apiKey: 'DAN_API_KEY_VAO_DAY',
+  authDomain: 'TEN_DU_AN.firebaseapp.com',
+  projectId: 'TEN_DU_AN',
+  storageBucket: 'TEN_DU_AN.firebasestorage.app',
+  messagingSenderId: 'DAN_SENDER_ID_VAO_DAY',
+  appId: 'DAN_APP_ID_VAO_DAY'
+};
+
+
+// ==============================================
+// 3. THÔNG TIN NGÂN HÀNG
+// ==============================================
+
+const BANK_BIN = '970422';
+const BANK_ACCOUNT = '0345712135';
+const BANK_NAME = 'MA GIO NA THAN';
+
+
+// ==============================================
+// 4. DANH SÁCH SẢN PHẨM
+// SỬA GIÁ VÀ TÊN SẢN PHẨM TẠI ĐÂY
+// ==============================================
+
+const products = [
+  {
+    id: 1,
+    name: 'Gemini + Antigravity Pro Pixel 6 tháng',
+    category: 'coding',
+    emoji: '🌈',
+    price: 99000,
+    desc: 'Gói AI Coding theo thông tin sản phẩm mẫu.'
+  },
+  {
+    id: 2,
+    name: 'Cursor Pro',
+    category: 'coding',
+    emoji: '💻',
+    price: 199000,
+    desc: 'Công cụ trợ lý AI hỗ trợ viết và chỉnh sửa mã.'
+  },
+  {
+    id: 3,
+    name: 'GitHub Copilot',
+    category: 'coding',
+    emoji: '🤖',
+    price: 149000,
+    desc: 'Gói tham khảo dành cho người học lập trình.'
+  },
+  {
+    id: 4,
+    name: 'Claude Code',
+    category: 'coding',
+    emoji: '🧠',
+    price: 249000,
+    desc: 'AI hỗ trợ phân tích và phát triển mã nguồn.'
+  },
+  {
+    id: 5,
+    name: 'Windsurf Pro',
+    category: 'coding',
+    emoji: '⚡',
+    price: 189000,
+    desc: 'Môi trường phát triển tích hợp trợ lý AI.'
+  },
+  {
+    id: 6,
+    name: 'Combo AI Coding',
+    category: 'combo',
+    emoji: '🚀',
+    price: 399000,
+    desc: 'Gói combo minh họa, nội dung do cửa hàng quy định.'
+  }
+];
+
+
+// ==============================================
+// 5. BIẾN VÀ HÀM CHUNG
+// ==============================================
+
+const $ = id => document.getElementById(id);
+
+const money = value =>
+  new Intl.NumberFormat('vi-VN').format(value) + 'đ';
+
+const getProduct = id =>
+  products.find(p => p.id === id);
+
+let user = null;
+let auth = null;
+let cart = [];
+let currentOrder = null;
+
+const cartKey = 'nathan-ai-cart-v2';
+
+try {
+  const stored = JSON.parse(
+    localStorage.getItem(cartKey) || '[]'
+  );
+
+  if (Array.isArray(stored)) {
+    cart = stored.filter(item =>
+      getProduct(item.id) &&
+      Number.isInteger(item.qty) &&
+      item.qty > 0
+    );
+  }
+} catch (_) {
+  cart = [];
+}
+
+
+// ==============================================
+// 6. HIỂN THỊ SẢN PHẨM
+// ==============================================
+
+function renderProducts() {
+  const search = $('search')
+    .value.toLocaleLowerCase('vi').trim();
+
+  const category = $('category').value;
+
+  const result = products.filter(p =>
+    (category === 'all' || p.category === category) &&
+    p.name.toLocaleLowerCase('vi').includes(search)
+  );
+
+  $('productsGrid').innerHTML = result.map(p => `
+    <article class="product">
+
+      <div class="illustration">${p.emoji}</div>
+
+      <span class="tag">
+        ${p.category === 'combo' ? 'COMBO AI' : 'AI CODING'}
+      </span>
+
+      <h3>${p.name}</h3>
+
+      <p>${p.desc}</p>
+
+      <div class="product-bottom">
+        <b class="price">${money(p.price)}</b>
+
+        <button
+          class="btn primary small"
+          data-add="${p.id}">
+          + Thêm vào giỏ
+        </button>
+      </div>
+
+    </article>
+  `).join('') || '<p>Không tìm thấy sản phẩm phù hợp.</p>';
+}
+
+
+// ==============================================
+// 7. TÍNH TIỀN VÀ GIẢM GIÁ
+// ==============================================
+
+function totals() {
+  const subtotal = cart.reduce((sum, item) => {
+    return sum + getProduct(item.id).price * item.qty;
+  }, 0);
+
+  const discount =
+    $('promo').value.trim().toUpperCase() === 'AI10'
+      ? Math.round(subtotal * 0.1)
+      : 0;
+
+  return {
+    subtotal,
+    discount,
+    total: subtotal - discount,
+    count: cart.reduce((sum, item) => sum + item.qty, 0)
+  };
+}
+
+
+// ==============================================
+// 8. QUẢN LÝ GIỎ HÀNG
+// ==============================================
+
+function renderCart() {
+
+  try {
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+  } catch (_) {}
+
+  $('cartCount').textContent = totals().count;
+
+  $('cartItems').innerHTML = cart.length
+    ? cart.map(item => {
+
+        const p = getProduct(item.id);
+
+        return `
+          <div class="cart-row">
+
+            <div class="mini-icon">${p.emoji}</div>
+
+            <div class="cart-info">
+
+              <strong>${p.name}</strong>
+
+              <span class="muted">
+                ${money(p.price)} / sản phẩm
+              </span>
+
+              <div class="qty">
+                <button data-minus="${p.id}">−</button>
+                ${item.qty}
+                <button data-plus="${p.id}">+</button>
+              </div>
+
+            </div>
+
+            <button
+              class="remove"
+              data-remove="${p.id}">
+              Xóa
+            </button>
+
+          </div>
+        `;
+      }).join('')
+
+    : '<p class="muted">Giỏ hàng trống. Hãy thêm sản phẩm ở phía trên.</p>';
+
+  const t = totals();
+
+  $('subtotal').textContent = money(t.subtotal);
+  $('discount').textContent = '−' + money(t.discount);
+  $('grandTotal').textContent = money(t.total);
+  $('orderCount').textContent = t.count;
+}
+
+function changeQty(id, delta) {
+
+  let item = cart.find(i => i.id === id);
+
+  if (!item && delta > 0) {
+    cart.push({ id, qty: 1 });
+  } else if (item) {
+    item.qty += delta;
+
+    cart = cart.filter(i => i.qty > 0);
+  }
+
+  renderCart();
+}
+
+
+// ==============================================
+// 9. CHUYỂN BƯỚC THANH TOÁN
+// ==============================================
+
+function showCheckoutStep(step) {
+
+  $('checkoutStep1').classList.toggle(
+    'hidden', step !== 1
+  );
+
+  $('checkoutStep2').classList.toggle(
+    'hidden', step !== 2
+  );
+
+  $('step1').classList.toggle(
+    'active', step === 1
+  );
+
+  $('step2').classList.toggle(
+    'active', step === 2
+  );
+
+  $('checkout').scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
+function showError(message) {
+  $('checkoutMessage').textContent = message;
+  $('checkoutMessage').className = 'status error';
+}
+
+
+// ==============================================
+// 10. ĐĂNG NHẬP GOOGLE FIREBASE
+// ==============================================
+
+const configured =
+  firebaseConfig.apiKey !== 'DAN_API_KEY_VAO_DAY' &&
+  firebaseConfig.appId !== 'DAN_APP_ID_VAO_DAY';
+
+if (configured) {
+
+  try {
+
+    const app = initializeApp(firebaseConfig);
+
+    auth = getAuth(app);
+
+    onAuthStateChanged(auth, account => {
+
+      user = account;
+
+      $('loginBtn').classList.toggle(
+        'hidden', !!account
+      );
+
+      $('logoutBtn').classList.toggle(
+        'hidden', !account
+      );
+
+      $('authHint').textContent = account
+        ? `Đã đăng nhập Google: ${account.email}`
+        : 'Hãy đăng nhập Google để tiến hành đặt hàng.';
+
+      if (account) {
+        $('buyerName').value =
+          account.displayName || '';
+
+        $('buyerEmail').value =
+          account.email || '';
+      }
+
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    $('authHint').textContent =
+      'Cấu hình Firebase chưa hợp lệ.';
+  }
+
+} else {
+
+  $('authHint').textContent =
+    'Chưa cấu hình Firebase. Hãy dán firebaseConfig trong mã nguồn để đăng nhập Google.';
+}
+
+
+// ĐĂNG NHẬP GOOGLE
+
+$('loginBtn').addEventListener('click', async () => {
+
+  if (!auth) {
+    alert('Bạn cần cấu hình Firebase trước.');
+    return;
+  }
+
+  try {
+
+    const provider = new GoogleAuthProvider();
+
+    await signInWithPopup(auth, provider);
+
+  } catch (error) {
+
+    const code = error.code || '';
+
+    let message =
+      'Không thể đăng nhập. Kiểm tra cấu hình Firebase và trình duyệt.';
+
+    if (code === 'auth/unauthorized-domain') {
+      message =
+        'Hãy thêm tên miền GitHub Pages vào Firebase Authorized domains.';
+    }
+
+    if (code === 'auth/operation-not-allowed') {
+      message =
+        'Hãy bật Google trong Firebase Authentication → Sign-in method.';
+    }
+
+    if (code === 'auth/popup-closed-by-user') {
+      message =
+        'Cửa sổ Google đã đóng trước khi đăng nhập hoàn tất.';
+    }
+
+    alert(message + '\nMã lỗi: ' + code);
+  }
+});
+
+
+// ĐĂNG XUẤT GOOGLE
+
+$('logoutBtn').addEventListener('click', () => {
+
+  if (auth) {
+    signOut(auth);
+  }
+
+});
+
+
+// ==============================================
+// 11. TẠO VIETQR ĐỘNG
+// ==============================================
+
+function qrLink(amount, memo) {
+
+  const baseUrl =
+    `https://img.vietqr.io/image/${BANK_BIN}-${BANK_ACCOUNT}-compact2.png`;
+
+  const params = new URLSearchParams({
+    amount: String(amount),
+    addInfo: memo,
+    accountName: BANK_NAME
+  });
+
+  return `${baseUrl}?${params.toString()}`;
+}
+
+
+// TẠO MÃ ĐƠN RIÊNG CHO KHÁCH
+
+function makeOrderId() {
+
+  const time = Date.now()
+    .toString(36)
+    .toUpperCase();
+
+  const random = Math.floor(
+    Math.random() * 1000
+  ).toString().padStart(3, '0');
+
+  return 'NT' + time + random;
+}
+
+
+// ==============================================
+// 12. TẠO ĐƠN HÀNG VÀ HIỂN THỊ QR
+// ==============================================
+
+$('checkoutBtn').addEventListener('click', () => {
+
+  const t = totals();
+
+  if (!t.count) {
+    showError('Vui lòng thêm ít nhất một sản phẩm.');
+    return;
+  }
+
+  if (!user) {
+    showError(
+      'Vui lòng đăng nhập Google trước khi thanh toán.'
+    );
+    return;
+  }
+
+  const name = $('buyerName').value.trim();
+  const email = $('buyerEmail').value.trim();
+  const phone = $('buyerPhone').value.trim();
+
+  const validEmail =
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const validPhone =
+    /^\d{9,11}$/.test(phone.replace(/\s/g, ''));
+
+  if (!name || !validEmail || !validPhone) {
+    showError(
+      'Hãy nhập đúng họ tên, email và số điện thoại (9–11 chữ số).'
+    );
+    return;
+  }
+
+  const orderId = makeOrderId();
+
+  // Nội dung không dấu, theo từng đơn hàng
+  const memo = 'NATHAN ' + orderId;
+
+  currentOrder = {
+    orderId,
+    memo,
+    name,
+    email,
+    phone,
+    total: t.total,
+    items: cart.map(i => ({ ...i }))
+  };
+
+  $('orderId').textContent = orderId;
+
+  $('payAmount').textContent = money(t.total);
+
+  $('payMemo').textContent = memo;
+
+  $('qrStatus').textContent =
+    'Đang tải mã VietQR...';
+
+  // QR sẽ chứa đúng số tiền và nội dung đơn hàng
+  $('qrImg').src = qrLink(t.total, memo);
+
+  showCheckoutStep(2);
+});
+
+
+// KHI QR TẢI THÀNH CÔNG
+
+$('qrImg').addEventListener('load', () => {
+
+  $('qrStatus').textContent =
+    'QR đã tạo. Kiểm tra tên người nhận, số tiền và nội dung trong ứng dụng ngân hàng.';
+
+});
+
+
+// KHI QR KHÔNG TẢI ĐƯỢC
+
+$('qrImg').addEventListener('error', () => {
+
+  $('qrStatus').textContent =
+    'Không tải được QR. Hãy kiểm tra mạng hoặc chuyển khoản thủ công bằng thông tin bên cạnh.';
+
+});
+
+
+// QUAY LẠI GIỎ HÀNG
+
+$('backBtn').addEventListener('click', () => {
+
+  showCheckoutStep(1);
+
+});
+
+
+// ==============================================
+// 13. SAO CHÉP THÔNG TIN THANH TOÁN
+// ==============================================
+
+async function copyText(text) {
+
+  try {
+
+    await navigator.clipboard.writeText(text);
+
+    alert('Đã sao chép!');
+
+  } catch (_) {
+
+    window.prompt('Sao chép nội dung này:', text);
+
+  }
+}
+
+
+// SAO CHÉP THÔNG TIN NGÂN HÀNG
+
+$('copyPaymentBtn').addEventListener('click', () => {
+
+  if (!currentOrder) return;
+
+  const paymentText =
+    `MB Bank\n` +
+    `Chủ TK: ${BANK_NAME}\n` +
+    `Số TK: ${BANK_ACCOUNT}\n` +
+    `Số tiền: ${currentOrder.total} VND\n` +
+    `Nội dung: ${currentOrder.memo}`;
+
+  copyText(paymentText);
+});
+
+
+// SAO CHÉP THÔNG TIN ĐƠN HÀNG
+
+$('copyOrderBtn').addEventListener('click', () => {
+
+  if (!currentOrder) return;
+
+  const order = currentOrder;
+
+  const items = order.items.map(item => {
+
+    const p = getProduct(item.id);
+
+    return `- ${p.name} x${item.qty}: ${money(p.price * item.qty)}`;
+
+  }).join('\n');
+
+  const orderText =
+    `ĐƠN HÀNG CHỜ XÁC NHẬN: ${order.orderId}\n` +
+    `Khách: ${order.name}\n` +
+    `Email: ${order.email}\n` +
+    `SĐT: ${order.phone}\n` +
+    `${items}\n` +
+    `Tổng: ${money(order.total)}\n` +
+    `Chuyển khoản: ${order.memo}\n` +
+    `Trạng thái: Khách chưa được xác minh thanh toán`;
+
+  copyText(orderText);
+});
+
+
+// ==============================================
+// 14. SỰ KIỆN NÚT BẤM
+// ==============================================
+
+// MỞ GIỎ HÀNG
+
+$('cartBtn').addEventListener('click', () => {
+
+  showCheckoutStep(1);
+
+});
+
+
+// TÌM KIẾM VÀ LỌC SẢN PHẨM
+
+$('search').addEventListener(
+  'input', renderProducts
+);
+
+$('category').addEventListener(
+  'change', renderProducts
+);
+
+
+// NHẬP MÃ GIẢM GIÁ
+
+$('promo').addEventListener(
+  'input', renderCart
+);
+
+
+// THÊM / BỚT / XÓA SẢN PHẨM
+
+document.addEventListener('click', event => {
+
+  const button = event.target.closest('button');
+
+  if (!button) return;
+
+  if (button.dataset.add) {
+    changeQty(Number(button.dataset.add), 1);
+  }
+
+  if (button.dataset.plus) {
+    changeQty(Number(button.dataset.plus), 1);
+  }
+
+  if (button.dataset.minus) {
+    changeQty(Number(button.dataset.minus), -1);
+  }
+
+  if (button.dataset.remove) {
+
+    cart = cart.filter(
+      item => item.id !== Number(button.dataset.remove)
+    );
+
+    renderCart();
+  }
+
+});
+
+
+// ==============================================
+// 15. KHỞI TẠO WEBSITE
+// ==============================================
+
+renderProducts();
+renderCart();
+
+</script>
+
+</body>
+</html>
