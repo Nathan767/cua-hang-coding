@@ -858,7 +858,7 @@
 
 import {
   initializeApp
-} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js';
+} from 'https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js';
 
 import {
   getAuth,
@@ -866,7 +866,7 @@ import {
   signInWithPopup,
   signOut,
   onAuthStateChanged
-} from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js';
 
 
 // ==============================================
@@ -875,12 +875,13 @@ import {
 // ==============================================
 
 const firebaseConfig = {
-  apiKey: 'DAN_API_KEY_VAO_DAY',
-  authDomain: 'TEN_DU_AN.firebaseapp.com',
-  projectId: 'TEN_DU_AN',
-  storageBucket: 'TEN_DU_AN.firebasestorage.app',
-  messagingSenderId: 'DAN_SENDER_ID_VAO_DAY',
-  appId: 'DAN_APP_ID_VAO_DAY'
+  apiKey: 'AIzaSyAuQNnIL6HPrhIHUrjIl0QFuR71g8Q9MfU',
+  authDomain: 'fir-config-a8408.firebaseapp.com',
+  projectId: 'fir-config-a8408',
+  storageBucket: 'fir-config-a8408.firebasestorage.app',
+  messagingSenderId: '794522247722',
+  appId: '1:794522247722:web:75c3aa21a4afffcb9c1953',
+  measurementId: 'G-BRT3X81Z90'
 };
 
 
@@ -1188,7 +1189,7 @@ if (configured) {
       );
 
       $('authHint').textContent = account
-        ? `Đã đăng nhập Google: ${account.email}`
+        ? `Đã đăng nhập Google: ${account.displayName || account.email} (${account.email})`
         : 'Hãy đăng nhập Google để tiến hành đặt hàng.';
 
       if (account) {
@@ -1246,6 +1247,14 @@ $('loginBtn').addEventListener('click', async () => {
     if (code === 'auth/operation-not-allowed') {
       message =
         'Hãy bật Google trong Firebase Authentication → Sign-in method.';
+    }
+
+    if (code === 'auth/popup-blocked') {
+      message = 'Trình duyệt đã chặn cửa sổ Google. Hãy cho phép popup đối với trang này.';
+    }
+
+    if (code === 'auth/network-request-failed') {
+      message = 'Không kết nối được Firebase. Hãy kiểm tra Internet và thử lại.';
     }
 
     if (code === 'auth/popup-closed-by-user') {
